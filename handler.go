@@ -19,3 +19,13 @@ func GetUsedParamsHandler(w http.ResponseWriter, r *http.Request, p httprouter.P
 	text := "Product " + p.ByName("id")
 	fmt.Fprint(w, text)
 }
+
+func NamedParameterHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+	text := "Product " + p.ByName("id") + " Item " + p.ByName("itemId")
+	fmt.Fprint(w, text)
+}
+
+func CatchAllParameterHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+	text := "Image " + p.ByName("image")
+	fmt.Fprint(w, text)
+}
