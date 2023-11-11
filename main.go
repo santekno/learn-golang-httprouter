@@ -2,6 +2,7 @@ package main
 
 import (
 	"embed"
+	"fmt"
 	"io/fs"
 	"net/http"
 
@@ -21,6 +22,14 @@ func main() {
 	router.GET("/product/:id/items/:itemId", NamedParameterHandler)
 	router.GET("/images/*image", CatchAllParameterHandler)
 	router.ServeFiles("/files/*filepath", http.FS(directory))
+
+	router.PanicHandler = func(w http.ResponseWriter, r *http.Request, i interface{}) {
+		fmt.Fprint(w, "Panic ", i)
+	}
+
+	router.GET("/panic", PanicHandler)
+
+	router.NotFound = http.HandlerFunc(NotFoundHandler)
 
 	server := http.Server{
 		Handler: router,

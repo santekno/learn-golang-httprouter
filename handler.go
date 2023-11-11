@@ -29,3 +29,11 @@ func CatchAllParameterHandler(w http.ResponseWriter, r *http.Request, p httprout
 	text := "Image " + p.ByName("image")
 	fmt.Fprint(w, text)
 }
+
+func PanicHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+	panic("Oops panic")
+}
+
+func NotFoundHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "halaman tidak ditemukan")
+}
