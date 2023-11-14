@@ -28,11 +28,15 @@ func main() {
 	}
 
 	router.GET("/panic", PanicHandler)
-
+	// handler custom for not found
 	router.NotFound = http.HandlerFunc(NotFoundHandler)
+	// handler custom for method not allowdd
+	router.MethodNotAllowed = http.HandlerFunc(MethodNotAllowedHandler)
+
+	middleware := &LogMiddleware{router}
 
 	server := http.Server{
-		Handler: router,
+		Handler: middleware,
 		Addr:    "localhost:8080",
 	}
 

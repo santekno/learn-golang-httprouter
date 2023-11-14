@@ -37,3 +37,7 @@ func PanicHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 func NotFoundHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, "halaman tidak ditemukan")
 }
+
+func MethodNotAllowedHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "method tidak didukung")
+}
