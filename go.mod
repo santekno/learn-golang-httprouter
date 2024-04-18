@@ -1,4 +1,4 @@
-module github.com/santekno/belajar-golang-httprouter
+module github.com/santekno/learn-golang-httprouter
 
 go 1.21.1
 
